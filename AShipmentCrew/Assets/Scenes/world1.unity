@@ -73618,6 +73618,42 @@ MonoBehaviour:
   movementSpeed: 9
   mouseSensitivity: 1.4
   upDownRange: 60
+  shipArea: 0
+  inShip: 0
+  wall: 0
+  islandArea: 0
+  spawnArea: 0
+  money: 0
+  health: 100
+  move: 1
+  gameOver: 0
+  pause: 0
+  itemSpeed: 0
+  invincible: 0
+  invincibleTimer: 0
+  knockback: 0
+  knockbackSave: 0
+  hit: 0
+  healthDisplay: 0
+  knockbackDir: 0
+  dirLock: 0
+  ship: {fileID: 364319216}
+  playerShipSpawn: {fileID: 0}
+  canon: {fileID: 0}
+  pauseCam: {fileID: 0}
+  mainCam: {fileID: 0}
+  cM: {fileID: 0}
+  rotSave: {x: 0, y: 0, z: 0, w: 0}
+  moneyVar: {fileID: 0}
+  healthVar: {fileID: 0}
+  pauseTxt: {fileID: 0}
+  gameOverTxt: {fileID: 0}
+  enterShipTxt: {fileID: 0}
+  camFun: {fileID: 0}
+  coinSound: {fileID: 0}
+  hitSound: {fileID: 0}
+  flagUp: {fileID: 0}
+  shopScr: {fileID: 0}
 --- !u!143 &2069825872
 CharacterController:
   m_ObjectHideFlags: 0
