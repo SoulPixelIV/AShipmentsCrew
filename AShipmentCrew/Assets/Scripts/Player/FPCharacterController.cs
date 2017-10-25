@@ -32,6 +32,8 @@ public class FPCharacterController : MonoBehaviour {
 
     public Quaternion rotSave;
     GameObject currSpawnpoint;
+    public GameObject pauseCam;
+    public GameObject mainCam;
 
     //Scripts
     public cameraMovement cM;
@@ -208,23 +210,19 @@ public class FPCharacterController : MonoBehaviour {
 
     void PauseStart()
     {
-        GameObject MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        GameObject pauseCam = GameObject.FindGameObjectWithTag("pauseCam");
         Debug.Log("PAUSE ON");
         move = false;
         pauseCam.SetActive(true);
-        MainCamera.SetActive(false);
+        mainCam.SetActive(false);
         Time.timeScale = 0;
         pauseTxt.gameObject.SetActive(true);
     }
 
     void PauseStop()
     {
-        GameObject MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        GameObject pauseCam = GameObject.FindGameObjectWithTag("pauseCam");
         Debug.Log("PAUSE OFF");
         pauseCam.SetActive(false);
-        MainCamera.SetActive(true);
+        mainCam.SetActive(true);
         Time.timeScale = 1;
         move = true;
         pauseTxt.gameObject.SetActive(false);
@@ -266,7 +264,10 @@ public class FPCharacterController : MonoBehaviour {
                     enterShip();
                 }
             }
-            else
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (inShip == true)
             {
                 exitShip();
             }
@@ -388,7 +389,10 @@ public class FPCharacterController : MonoBehaviour {
         transform.Rotate(0, rotLeftRight, 0);
         verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
         verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);
-        Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+        if (Camera.main != null)
+        {
+            Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+        }
 
         //Movement
         if (move == true)

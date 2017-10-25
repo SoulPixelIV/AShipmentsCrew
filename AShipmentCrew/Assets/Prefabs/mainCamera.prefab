@@ -107,19 +107,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5454d0d2033b3aa4c927490d4d450895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followPlayer: 0
-  islandCam: 0
   shipCam: 0
-  speedAnim: 0
   shipMov: {fileID: 0}
-  playerPosSave: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
   camLookAt: {fileID: 0}
-  camLookAtPlayer: {fileID: 0}
-  camLookAtPlayerIsland: {fileID: 0}
   camObj: {fileID: 0}
-  camObjPlayer: {fileID: 0}
-  camObjPlayerIsland: {fileID: 0}
 --- !u!114 &114693853086387022
 MonoBehaviour:
   m_ObjectHideFlags: 1
