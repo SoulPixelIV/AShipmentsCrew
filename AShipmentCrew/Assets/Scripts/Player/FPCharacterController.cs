@@ -238,9 +238,10 @@ public class FPCharacterController : MonoBehaviour {
             Transform playerShipSpawn = GameObject.FindGameObjectWithTag("playerShipSpawn").transform;
             transform.position = playerShipSpawn.transform.position;
             transform.parent = ship.transform;
-            cM.shipCam = true;
+            //cM.shipCam = true;
             inShip = true;
             move = false;
+            Debug.Log("ENTER DONE");
         }
     }
 
@@ -248,13 +249,28 @@ public class FPCharacterController : MonoBehaviour {
     {
         Transform ship = GameObject.FindGameObjectWithTag("ship").transform;
         transform.parent = null;
-        cM.shipCam = false;
+        //cM.shipCam = false;
         inShip = false;
         transform.position = ship.transform.position + new Vector3(10, 0.85f, 0);
         move = true;
+        Debug.Log("EXIT DONE");
     }
 
     void Update() {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (inShip == false)
+            {
+                if (shipArea == true && move == true)
+                {
+                    enterShip();
+                }
+            }
+            else
+            {
+                exitShip();
+            }
+        }
         healthDisplay = Mathf.RoundToInt(health);
         moneyVar.text = "Money: " + money;
         healthVar.text = "Health: " + healthDisplay;

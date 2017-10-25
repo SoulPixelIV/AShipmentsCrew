@@ -115,25 +115,22 @@ public class shipMovement : MonoBehaviour {
 		{
 			rotSpeed = -32;
 		}
-
+        /*
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (FPcc.move == true)
+            if (FPcc.inShip == false)
             {
-                if (FPcc.inShip == false)
+                if (FPcc.shipArea == true && FPcc.move == true)
                 {
-                    if (FPcc.shipArea == true)
-                    {
-                        FPcc.enterShip();
-                    }
-                }
-                else
-                {
-                    FPcc.exitShip();
+                    FPcc.enterShip();
                 }
             }
+            else
+            {
+                FPcc.exitShip();
+            }
         }
-
+        */
         if (Input.GetKey(KeyCode.W) && FPcc.inShip == true && FPcc.move == false) {
             transform.position += ((transform.forward * speed) * Time.deltaTime);
 			speed += 6f * Time.deltaTime;
