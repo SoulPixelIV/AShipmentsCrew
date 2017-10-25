@@ -15,7 +15,7 @@ public class cannonScript : MonoBehaviour {
     float shootTimeSave;
 
     public GameObject cannonballPrefab;
-    public playerMovement plMov;
+    public FPCharacterController FPcc;
     public enemyShipMovement enMov;
     public Transform player;
 
@@ -48,7 +48,7 @@ public class cannonScript : MonoBehaviour {
         }
         if (selfControl == true)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && plMov.inShip == true && plMov.move == true)
+            if (Input.GetKeyDown(KeyCode.Space) && FPcc.inShip == true && FPcc.move == true)
             {
                 Fire();
             }

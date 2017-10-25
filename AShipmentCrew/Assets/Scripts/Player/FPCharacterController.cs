@@ -27,29 +27,27 @@ public class FPCharacterController : MonoBehaviour {
     public int healthDisplay;
     public int knockbackDir;
     public bool dirLock;
-
     private float invincibleSave;
+    float verticalRotation = 0;
 
-    public Transform ship;
-    public Transform playerShipSpawn;
-    public GameObject canon;
-    public GameObject pauseCam;
-    public GameObject mainCam;
-    public cameraMovement cM;
     public Quaternion rotSave;
+    GameObject currSpawnpoint;
+
+    //Scripts
+    public cameraMovement cM;
+    public shopScript shopScr;
+    public cameraFunctions camFun;
+
+    //Text
     public Text moneyVar;
     public Text healthVar;
     public Text pauseTxt;
     public Text gameOverTxt;
     public Text enterShipTxt;
-    public cameraFunctions camFun;
+
+    //Audio
     public AudioClip coinSound;
     public AudioClip hitSound;
-    public GameObject flagUp;
-    public shopScript shopScr;
-
-    float verticalRotation = 0;
-    GameObject currSpawnpoint;
 
     void Start () {
         FindObjectOfType<AudioManager>().Play("OceanSound");
@@ -86,8 +84,9 @@ public class FPCharacterController : MonoBehaviour {
         }
         if (other.gameObject.tag == "spawnpoint")
         {
+            GameObject flagDown = GameObject.FindGameObjectWithTag("flagDown");
             currSpawnpoint = other.gameObject;
-            Instantiate(flagUp, new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y, other.gameObject.transform.position.z), Quaternion.identity);
+            Instantiate(flagDown, new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y, other.gameObject.transform.position.z), Quaternion.identity);
             other.gameObject.SetActive(false);
         }
         if (other.gameObject.tag == "spawn1")
@@ -130,9 +129,10 @@ public class FPCharacterController : MonoBehaviour {
         {
             if (money > 499)
             {
+                GameObject cannon = GameObject.FindGameObjectWithTag("cannon");
                 money = money - 500;
                 Destroy(other.gameObject);
-                canon.SetActive(true);
+                cannon.SetActive(true);
             }
         }
     }
@@ -208,28 +208,34 @@ public class FPCharacterController : MonoBehaviour {
 
     void PauseStart()
     {
+        GameObject MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        GameObject pauseCam = GameObject.FindGameObjectWithTag("pauseCam");
         Debug.Log("PAUSE ON");
         move = false;
         pauseCam.SetActive(true);
-        mainCam.SetActive(false);
+        MainCamera.SetActive(false);
         Time.timeScale = 0;
         pauseTxt.gameObject.SetActive(true);
     }
 
     void PauseStop()
     {
+        GameObject MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        GameObject pauseCam = GameObject.FindGameObjectWithTag("pauseCam");
         Debug.Log("PAUSE OFF");
         pauseCam.SetActive(false);
-        mainCam.SetActive(true);
+        MainCamera.SetActive(true);
         Time.timeScale = 1;
         move = true;
         pauseTxt.gameObject.SetActive(false);
     }
 
-    void enterShip()
+    public void enterShip()
     {
+        Transform ship = GameObject.FindGameObjectWithTag("ship").transform;
         if (ship != null)
         {
+            Transform playerShipSpawn = GameObject.FindGameObjectWithTag("playerShipSpawn").transform;
             transform.position = playerShipSpawn.transform.position;
             transform.parent = ship.transform;
             cM.shipCam = true;
@@ -240,6 +246,7 @@ public class FPCharacterController : MonoBehaviour {
 
     public void exitShip()
     {
+        Transform ship = GameObject.FindGameObjectWithTag("ship").transform;
         transform.parent = null;
         cM.shipCam = false;
         inShip = false;
@@ -368,11 +375,23 @@ public class FPCharacterController : MonoBehaviour {
         Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
 
         //Movement
-        float forwardSpeed = Input.GetAxis("Vertical") * movementSpeed;
-        float sideSpeed = Input.GetAxis("Horizontal") * movementSpeed;
-        Vector3 speed = new Vector3(sideSpeed, 0, forwardSpeed);
-        speed = transform.rotation * speed;
-        CharacterController cc = GetComponent<CharacterController>();
-        cc.SimpleMove(speed);
+        if (move == true)
+        {
+            float forwardSpeed = Input.GetAxis("Vertical") * movementSpeed;
+            float sideSpeed = Input.GetAxis("Horizontal") * movementSpeed;
+            Vector3 speed = new Vector3(sideSpeed, 0, forwardSpeed);
+            speed = transform.rotation * speed;
+            CharacterController cc = GetComponent<CharacterController>();
+            cc.SimpleMove(speed);
+        }
+        else
+        {
+            float forwardSpeed = 0;
+            float sideSpeed = 0;
+            Vector3 speed = new Vector3(sideSpeed, 0, forwardSpeed);
+            speed = transform.rotation * speed;
+            CharacterController cc = GetComponent<CharacterController>();
+            cc.SimpleMove(speed);
+        }
     }
 }

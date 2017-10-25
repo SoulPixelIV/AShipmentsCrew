@@ -7787,7 +7787,7 @@ MonoBehaviour:
   - {fileID: 995145933}
   - {fileID: 588986787}
   player: {fileID: 2069825873}
-  plMov: {fileID: 0}
+  FPcc: {fileID: 0}
 --- !u!195 &213026673
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8851,7 +8851,7 @@ GameObject:
   - component: {fileID: 235951186}
   - component: {fileID: 235951188}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: mainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14190,7 +14190,7 @@ MonoBehaviour:
   rotSpeed: 0
   shipHealth: 100
   shipHealthDisplay: 0
-  playerMov: {fileID: 0}
+  FPcc: {fileID: 2069825871}
   canonball: {fileID: 1542125623351540, guid: caa8ecffdeff4c94fb204d6b8555c54a, type: 2}
   fire1: {fileID: 1167380253}
   fire2: {fileID: 1761053730}
@@ -18371,7 +18371,7 @@ MonoBehaviour:
   speedUpgradeBought: 0
   cannonUpgradeBought: 0
   inShop: 0
-  plMov: {fileID: 0}
+  FPcc: {fileID: 0}
 --- !u!23 &479240508
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47485,7 +47485,7 @@ MonoBehaviour:
   - {fileID: 995145933}
   - {fileID: 588986787}
   player: {fileID: 2069825873}
-  plMov: {fileID: 0}
+  FPcc: {fileID: 0}
 --- !u!195 &1339532013
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -55163,7 +55163,7 @@ GameObject:
   - component: {fileID: 1215616124}
   m_Layer: 0
   m_Name: PlayerShipSpawn
-  m_TagString: Untagged
+  m_TagString: playerShipSpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59852,7 +59852,7 @@ MonoBehaviour:
   buttonRepairShip: {fileID: 2065589914}
   buttonExit: {fileID: 1170773178}
   ship: {fileID: 364319216}
-  plMov: {fileID: 0}
+  FPcc: {fileID: 0}
   spMov: {fileID: 364319217}
 --- !u!23 &1702427203
 MeshRenderer:
@@ -72122,7 +72122,7 @@ MonoBehaviour:
   distance: 0
   cannonballPrefab: {fileID: 1542125623351540, guid: caa8ecffdeff4c94fb204d6b8555c54a,
     type: 2}
-  plMov: {fileID: 0}
+  FPcc: {fileID: 0}
   enMov: {fileID: 1175135829}
   player: {fileID: 2069825873}
 --- !u!23 &2038363382
@@ -73637,23 +73637,17 @@ MonoBehaviour:
   healthDisplay: 0
   knockbackDir: 0
   dirLock: 0
-  ship: {fileID: 364319216}
-  playerShipSpawn: {fileID: 0}
-  canon: {fileID: 0}
-  pauseCam: {fileID: 0}
-  mainCam: {fileID: 0}
-  cM: {fileID: 0}
   rotSave: {x: 0, y: 0, z: 0, w: 0}
-  moneyVar: {fileID: 0}
-  healthVar: {fileID: 0}
-  pauseTxt: {fileID: 0}
-  gameOverTxt: {fileID: 0}
-  enterShipTxt: {fileID: 0}
-  camFun: {fileID: 0}
-  coinSound: {fileID: 0}
-  hitSound: {fileID: 0}
-  flagUp: {fileID: 0}
-  shopScr: {fileID: 0}
+  cM: {fileID: 235951187}
+  shopScr: {fileID: 479240507}
+  camFun: {fileID: 235951186}
+  moneyVar: {fileID: 94486780}
+  healthVar: {fileID: 1412940045}
+  pauseTxt: {fileID: 732101662}
+  gameOverTxt: {fileID: 1478344242}
+  enterShipTxt: {fileID: 2080035967}
+  coinSound: {fileID: 8300000, guid: c631f1660d9f2a64b9503d2719125c9d, type: 3}
+  hitSound: {fileID: 8300000, guid: 00ee018beb4af234786db59e40ad0500, type: 3}
 --- !u!143 &2069825872
 CharacterController:
   m_ObjectHideFlags: 0
@@ -73679,7 +73673,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2069825868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7274187, y: 4.74, z: 42.656197}
+  m_LocalPosition: {x: -1.7274187, y: 4.74, z: -52.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1461274531}

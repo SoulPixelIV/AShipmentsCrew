@@ -19,7 +19,7 @@ public class shopScript : MonoBehaviour {
     public bool cannonUpgradeBought;
     public bool inShop;
 
-    public playerMovement plMov;
+    public FPCharacterController FPcc;
 
     void OnTriggerEnter(Collider other)
     {
@@ -31,7 +31,7 @@ public class shopScript : MonoBehaviour {
 
     void shopEnter () {
         inShop = true;
-        plMov.move = false;
+        FPcc.move = false;
         normCam.SetActive(false);
         shopCam.SetActive(true);
         buttonSpeedUpgrade.gameObject.SetActive(true);
@@ -45,7 +45,7 @@ public class shopScript : MonoBehaviour {
     void shopExit()
     {
         inShop = false;
-        plMov.move = true;
+        FPcc.move = true;
         normCam.SetActive(true);
         shopCam.SetActive(false);
         buttonSpeedUpgrade.gameObject.SetActive(false);
@@ -64,20 +64,21 @@ public class shopScript : MonoBehaviour {
 
     public void upgradeSpeed()
     {
-        if (plMov.money > 2199 && speedUpgradeBought == false)
+        if (FPcc.money > 2199 && speedUpgradeBought == false)
         {
-            plMov.money -= 2200;
-            plMov.itemSpeed = true;
+            FPcc.money -= 2200;
+            FPcc.itemSpeed = true;
             speedUpgradeBought = true;
         }
     }
 
     public void upgradeCannon()
     {
-        if (plMov.money > 2559 && cannonUpgradeBought == false)
+        if (FPcc.money > 2559 && cannonUpgradeBought == false)
         {
-            plMov.money = plMov.money - 2560;
-            plMov.canon.SetActive(true);
+            FPcc.money = FPcc.money - 2560;
+            GameObject cannon = GameObject.FindGameObjectWithTag("cannon");
+            cannon.SetActive(true);
             cannonUpgradeBought = true;
         }
     }

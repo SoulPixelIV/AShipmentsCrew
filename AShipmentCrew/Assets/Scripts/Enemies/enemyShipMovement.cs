@@ -12,7 +12,7 @@ public class enemyShipMovement : MonoBehaviour {
 
     public Transform[] WayPoints;
     public Transform player;
-    public playerMovement plMov;
+    public FPCharacterController FPcc;
     NavMeshAgent agent;
 
     void OnCollisionEnter(Collision collision)
@@ -59,12 +59,12 @@ public class enemyShipMovement : MonoBehaviour {
             chasing = true;
             if (distPlayer > 15)
             {
-                agent.Resume();
+                agent.isStopped = false;
                 agent.SetDestination(player.transform.position);
             }
             if (distPlayer < 15)
             {
-                agent.Stop();
+                agent.isStopped = true;
             }
         }
         else

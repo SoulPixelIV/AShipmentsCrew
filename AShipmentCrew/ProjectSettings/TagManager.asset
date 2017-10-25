@@ -22,6 +22,8 @@ TagManager:
   - spawnpoint
   - shoptrigger
   - repairtrigger
+  - playerShipSpawn
+  - flagDown
   layers:
   - Default
   - TransparentFX

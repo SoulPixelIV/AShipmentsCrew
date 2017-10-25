@@ -11,7 +11,7 @@ public class repairScript : MonoBehaviour {
     public Button buttonExit;
     public Transform ship;
 
-    public playerMovement plMov;
+    public FPCharacterController FPcc;
     public shipMovement spMov;
 
     void OnTriggerEnter(Collider other)
@@ -23,7 +23,7 @@ public class repairScript : MonoBehaviour {
     }
 
     void repairEnter () {
-        plMov.move = false;
+        FPcc.move = false;
         normCam.SetActive(false);
         repairCam.SetActive(true);
         buttonExit.gameObject.SetActive(true);
@@ -32,7 +32,7 @@ public class repairScript : MonoBehaviour {
 
     void repairExit()
     {
-        plMov.move = true;
+        FPcc.move = true;
         normCam.SetActive(true);
         repairCam.SetActive(false);
         buttonExit.gameObject.SetActive(false);
@@ -47,9 +47,9 @@ public class repairScript : MonoBehaviour {
 
     public void repairShip()
     {
-        if (plMov.money > 699 && spMov.shipHealth < 100)
+        if (FPcc.money > 699 && spMov.shipHealth < 100)
         {
-            plMov.money -= 700;
+            FPcc.money -= 700;
             spMov.shipHealth = 100;
         }
     }

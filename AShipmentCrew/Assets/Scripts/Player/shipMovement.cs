@@ -9,7 +9,7 @@ public class shipMovement : MonoBehaviour {
     public float shipHealth;
     public int shipHealthDisplay;
 
-	public playerMovement playerMov;
+	public FPCharacterController FPcc;
     public GameObject canonball;
     public GameObject fire1;
     public GameObject fire2;
@@ -76,16 +76,16 @@ public class shipMovement : MonoBehaviour {
         }
         if (shipHealth < 1)
         {
-            playerMov.exitShip();
+            FPcc.exitShip();
             Destroy(gameObject);
         }
 
-        if (playerMov.pause == true)
+        if (FPcc.pause == true)
         {
             speed = 0;
             rotSpeed = 0;
         }
-        if (playerMov.itemSpeed == true)
+        if (FPcc.itemSpeed == true)
         {
             if (speed > 24f)
             {
@@ -116,7 +116,25 @@ public class shipMovement : MonoBehaviour {
 			rotSpeed = -32;
 		}
 
-		if (Input.GetKey (KeyCode.W) && playerMov.inShip == true && playerMov.move == true) {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (FPcc.move == true)
+            {
+                if (FPcc.inShip == false)
+                {
+                    if (FPcc.shipArea == true)
+                    {
+                        FPcc.enterShip();
+                    }
+                }
+                else
+                {
+                    FPcc.exitShip();
+                }
+            }
+        }
+
+        if (Input.GetKey(KeyCode.W) && FPcc.inShip == true && FPcc.move == false) {
             transform.position += ((transform.forward * speed) * Time.deltaTime);
 			speed += 6f * Time.deltaTime;
 		} 
@@ -129,7 +147,7 @@ public class shipMovement : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKey(KeyCode.S) && playerMov.inShip == true && playerMov.move == true)
+		if (Input.GetKey(KeyCode.S) && FPcc.inShip == true && FPcc.move == false)
 		{
             transform.position -= ((-transform.forward * speed) * Time.deltaTime);
 			speed -= 6f * Time.deltaTime;
@@ -144,7 +162,7 @@ public class shipMovement : MonoBehaviour {
 		}
 
 
-		if (Input.GetKey(KeyCode.A) && playerMov.inShip == true && playerMov.move == true)
+		if (Input.GetKey(KeyCode.A) && FPcc.inShip == true && FPcc.move == false)
 		{
 			transform.Rotate(0, rotSpeed * Time.deltaTime, 0);
 			rotSpeed -= 12 * Time.deltaTime;
@@ -158,7 +176,7 @@ public class shipMovement : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKey(KeyCode.D) && playerMov.inShip == true && playerMov.move == true)
+		if (Input.GetKey(KeyCode.D) && FPcc.inShip == true && FPcc.move == false)
 		{
 			transform.Rotate (0, rotSpeed * Time.deltaTime, 0);
 			rotSpeed += 12 * Time.deltaTime;
