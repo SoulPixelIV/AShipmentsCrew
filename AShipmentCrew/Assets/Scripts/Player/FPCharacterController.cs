@@ -53,7 +53,14 @@ public class FPCharacterController : MonoBehaviour {
 
     void Start () {
         FindObjectOfType<AudioManager>().Play("OceanSound");
-        Cursor.visible = false;
+        if (shopScr.inShop == true)
+        {
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.visible = false;
+        }
         invincibleSave = invincibleTimer;
         knockbackSave = knockback;
     }
