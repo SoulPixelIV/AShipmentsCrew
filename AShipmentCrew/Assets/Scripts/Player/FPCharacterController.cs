@@ -91,6 +91,10 @@ public class FPCharacterController : MonoBehaviour {
                 cM.shipCam = false;
             }
         }
+        if (other.gameObject.tag == "shipTriggerbox")
+        {
+            startShip();
+        }
         if (other.gameObject.tag == "spawnpoint")
         {
             GameObject flagDown = GameObject.FindGameObjectWithTag("flagDown");
@@ -242,12 +246,17 @@ public class FPCharacterController : MonoBehaviour {
         {
             Transform playerShipSpawn = GameObject.FindGameObjectWithTag("playerShipSpawn").transform;
             transform.position = playerShipSpawn.transform.position;
-            transform.parent = ship.transform;
-            //cM.shipCam = true;
-            inShip = true;
-            move = false;
             Debug.Log("ENTER DONE");
         }
+    }
+
+    public void startShip()
+    {
+        Transform ship = GameObject.FindGameObjectWithTag("ship").transform;
+        transform.parent = ship.transform;
+        //cM.shipCam = true;
+        inShip = true;
+        move = false;
     }
 
     public void exitShip()

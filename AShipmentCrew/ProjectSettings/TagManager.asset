@@ -24,6 +24,7 @@ TagManager:
   - repairtrigger
   - playerShipSpawn
   - flagDown
+  - shipTriggerbox
   layers:
   - Default
   - TransparentFX
